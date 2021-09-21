@@ -48,6 +48,9 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/ex
 #微信消息推送
 git clone --depth 1 https://github.com/tty228/luci-app-serverchan package/extra/luci-app-serverchan
 
+# 最大连接数
+sed -i 's/16384/65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 #convert_translation
 po_file="$({ find |grep -E "[a-z0-9]+\.zh\-cn.+po"; } 2>"/dev/null")"
 for a in ${po_file}
