@@ -108,6 +108,6 @@ done
 # Script for creating ACL file for each LuCI APP
 bash ../create_acl_for_luci.sh -a
 
-cp ../r4s_config .config
+cp ../r2s_config .config
 make defconfig
 echo "ready to make!!!"
