@@ -2,7 +2,7 @@
 clear
 
 #获取openwrt
-git clone --depth 1 -b v21.02.0 https://github.com/openwrt/openwrt openwrt
+git clone --depth 1 -b v21.02.1 https://github.com/openwrt/openwrt openwrt
 #切换到openwrt目录
 cd openwrt
 
@@ -12,7 +12,14 @@ cd openwrt
 ./scripts/feeds install -a
 
 ### 获取额外的 LuCI 应用、主题和依赖 ###
-
+#AliyunDrive-WebDav
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav package/extra/aliyundrive-webdav
+svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav package/extra/luci-app-aliyundrive-webdav
+# SmartDNS(原SmartDNS版本较低)
+rm -rf ./feeds/packages/net/smartdns
+svn co https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
+rm -rf ./feeds/luci/applications/luci-app-smartdns
+svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #AdGuardHome
 #cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome ./package/extra/luci-app-adguardhome
@@ -21,10 +28,12 @@ rm -rf ./feeds/packages/net/adguardhome
 svn co https://github.com/openwrt/packages/trunk/net/adguardhome feeds/packages/net/adguardhome
 sed -i '/\t)/a\\t$(STAGING_DIR_HOST)/bin/upx --lzma --best $(GO_PKG_BUILD_BIN_DIR)/AdGuardHome' ./feeds/packages/net/adguardhome/Makefile
 sed -i '/init/d' feeds/packages/net/adguardhome/Makefile
-
+# socat
+svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-socat package/extra/luci-app-socat
 # ChinaDNS
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng/ package/extra/chinadns-ng
-
+# OLED 驱动程序
+git clone -b master --depth 1 https://github.com/NateLol/luci-app-oled.git package/extra/luci-app-oled
 # Passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/extra/luci-app-passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/extra/ipt2socks
@@ -113,6 +122,6 @@ done
 # Script for creating ACL file for each LuCI APP
 bash ../create_acl_for_luci.sh -a
 
-cp ../r2s_config .config
-make defconfig
+#cp ../r4s_config .config
+#make defconfig
 echo "ready to make!!!"
