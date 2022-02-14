@@ -24,10 +24,10 @@ sed -i "s,'eth1' 'eth0','eth0' 'eth1',g" target/linux/rockchip/armv8/base-files/
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/aliyundrive-webdav package/extra/aliyundrive-webdav
 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt/luci-app-aliyundrive-webdav package/extra/luci-app-aliyundrive-webdav
 # SmartDNS(原SmartDNS版本较低)
-rm -rf ./feeds/packages/net/smartdns
-svn co https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
-rm -rf ./feeds/luci/applications/luci-app-smartdns
-svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
+# rm -rf ./feeds/packages/net/smartdns
+# svn co https://github.com/Lienol/openwrt-packages/trunk/net/smartdns feeds/packages/net/smartdns
+# rm -rf ./feeds/luci/applications/luci-app-smartdns
+# svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns feeds/luci/applications/luci-app-smartdns
 #AdGuardHome
 #cp -rf ../openwrt-lienol/package/diy/luci-app-adguardhome ./package/new/luci-app-adguardhome
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome ./package/extra/luci-app-adguardhome
@@ -65,7 +65,7 @@ svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/extra/v2ray-
 
 # KMS 激活助手
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/extra/luci-app-vlmcsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/extra/vlmcsd
+svn co https://github.com/mrzhaohanhua/openwrt-package/trunk/vlmcsd package/extra/vlmcsd
 
 #微信消息推送
 git clone --depth 1 https://github.com/tty228/luci-app-serverchan package/extra/luci-app-serverchan
